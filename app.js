@@ -7,8 +7,8 @@ let sequelize = require("./db");
 
 // app.use(require("./middleware/validate-session"));
 
-// let board = require("./controllers/boardcontroller");
-// let item = require("./controllers/itemcontroller");
+let board = require("./controllers/boardcontroller");
+let item = require("./controllers/itemcontroller");
 // let shared = require("./controllers/relationshipcontroller");
 
 sequelize.sync();
@@ -19,8 +19,8 @@ sequelize.sync();
 
 // app.use("/api/user", user);
 // app.use("/api/admin", admin);
-// app.use("/api/board", board);
-// app.use("/api/item", item);
+app.use("/api/board", board);
+app.use("/api/item", item);
 // app.use("/api/shared", shared);
 
 app.listen(3000, function () {
