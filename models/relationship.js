@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Relationship = sequelize.define("relationship", {
-    user_1: {
+    user1: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    user_2: {
+    user2: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
