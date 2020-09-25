@@ -1,16 +1,15 @@
+require('dotenv').config();
 let express = require("express");
 let app = express();
 let sequelize = require("./db");
 
-let user = require("./controllers/usercontroller");
 
 // let admin = require("./controllers/admincontroller");
-
-
-
 let board = require("./controllers/boardcontroller");
 let item = require("./controllers/itemcontroller");
 // let shared = require("./controllers/relationshipcontroller");
+let user = require("./controllers/usercontroller");
+
 
 sequelize.sync();
 //sequelize.sync({force: true})
