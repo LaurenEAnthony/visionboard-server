@@ -1,3 +1,4 @@
+// require('dotenv').config();
 let express = require("express");
 let app = express();
 let sequelize = require("./db");
@@ -14,7 +15,7 @@ let item = require("./controllers/itemcontroller");
 sequelize.sync();
 //sequelize.sync({force: true})
 
-// app.use(express.json());
+app.use(express.json());
 // app.use(require('./middleware/headers'));
 
 // app.use("/api/user", user);
