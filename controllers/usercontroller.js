@@ -3,13 +3,14 @@ const User = require('../db').import('../models/user');
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcryptjs');
 
-router.post('/user', function(req, res) {
+router.post('/signup', function(req, res) {
 
     User.create({
         firstName: req.body.user.firstName,
         lastName: req.body.user.lastName, 
         email: req.body.user.email,
-        passwordhash: bcrypt.hashSync(req.body.user.passwordhash, 13)
+        password: bcrypt.hashSync(req.body.user.password, 13),
+        colorScheme: req.body.user.colorScheme
     })
     .then(
         function createSuccess(user) {
