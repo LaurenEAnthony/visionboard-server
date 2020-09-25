@@ -13,9 +13,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: true
         },
-        passwordhash: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        colorScheme: {
+            type: DataTypes.INTEGER
         }
     })
     return User;
