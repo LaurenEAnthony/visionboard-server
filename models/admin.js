@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Admin = sequelize.define('admin', {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
-        },
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     unique: true
+        // },
         tempPassword: {
             type: DataTypes.STRING,
             allowNull: false

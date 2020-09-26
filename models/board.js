@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Board = sequelize.define('board', {
-        // owner: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false
-        // },
+        owner: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         boardTitle: {
             type: DataTypes.STRING,
             allowNull: false
