@@ -25,5 +25,12 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.NOW 
         }
     })
+
+    // Item.associate = (models) => {
+    //     Item.belongsTo(models.Board, {
+    //       foreignKey: 'boardId',
+    //     });
+    //   };
+
     return Item;
 };

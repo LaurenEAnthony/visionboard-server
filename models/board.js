@@ -25,5 +25,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     })
+
+    // Board.associate = (models) => {
+    
+    //     Board.belongsTo(models.User, {
+    //       foreignKey: 'owner',
+    //     });
+    //   };
+
     return Board;
 };
