@@ -4,7 +4,6 @@ let app = express();
 let sequelize = require("./db");
 
 let user = require("./controllers/usercontroller");
-let admin = require("./controllers/admincontroller");
 let board = require("./controllers/boardcontroller");
 let item = require("./controllers/itemcontroller");
 let shared = require("./controllers/relationshipcontroller");
@@ -18,7 +17,6 @@ app.use(require('./middleware/headers'));
 
 // ***UNPROTECTED ROUTES***
 app.use("/api/user", user);
-app.use("/api/admin", admin);
 
 app.use(require("./middleware/validate-session"));
 // ***PROTECTED ROUTES***
