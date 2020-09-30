@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 let express = require("express");
 let app = express();
 let sequelize = require("./db");
@@ -13,7 +13,7 @@ sequelize.sync();
 
 app.use(express.json());
 
-app.use(require('./middleware/headers'));
+app.use(require("./middleware/headers"));
 
 // ***UNPROTECTED ROUTES***
 app.use("/api/user", user);
