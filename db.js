@@ -17,10 +17,17 @@ const sequelize = new Sequelize("visionboard", "postgres", "password", {
 // User(sequelize);
 // Relationship(sequelize);
 
-// const {board, item, user, relationship} = sequelize.models
+// const { board, item, user, relationship } = sequelize.models;
 
-// user.hasMany(relationship)
-// relationship.belongsTo(user)
+// user.hasMany(board); OK
+// board.belongsTo(user);OK
+// board.hasMany(item); OK
+// item.belongsTo(board); OK
+
+// user.hasMany(relationship); OK
+// relationship.belongsTo(user); OK
+// relationship.hasMany(users); OK
+// user.belongsTo(relationship); OK
 
 // user.hasMany(board);
 // board.belongsTo(user);
@@ -49,8 +56,9 @@ const sequelize = new Sequelize("visionboard", "postgres", "password", {
 
 
 sequelize.authenticate().then(
-  function() {
-      console.log('Connected to visionboard postgres database');
+
+  function () {
+    console.log("Connected to visionboard postgres database!!!");
   },
   function(err) {
       console.log(err);

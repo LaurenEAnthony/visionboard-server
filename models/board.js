@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+
     const Board = sequelize.define('board', {
         owner: {
             type: DataTypes.INTEGER,
@@ -25,13 +26,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }
     })
-
-    // Board.associate = (models) => {
-    
-    //     Board.belongsTo(models.User, {
-    //       foreignKey: 'owner',
-    //     });
-    //   };
-
-    return Board;
+  Board.associate = function (models) {
+    Board.belongsTo(models.User, {
+      foreignKey: "owner",
+    });
+    Board.hasMany(models.Item, {
+      foreignKey: "boardId",
+      as: "items",
+    });
+  };
+  return Board;
 };

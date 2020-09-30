@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+
     const Item = sequelize.define('items', {
         owner: {
             type: DataTypes.INTEGER,
@@ -26,11 +27,11 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
 
-    // Item.associate = (models) => {
-    //     Item.belongsTo(models.Board, {
-    //       foreignKey: 'boardId',
-    //     });
-    //   };
-
-    return Item;
+  Item.associate = function (models) {
+    Item.belongsTo(models.Board, {
+      foreignKey: "boardId",
+    });
+  };
+  return Item;
 };
+
