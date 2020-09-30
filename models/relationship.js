@@ -9,5 +9,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
+  Relationship.associate = function (models) {
+    Relationship.belongsTo(models.User),
+      {
+        foreignKey: "id",
+        as: "user1",
+      };
+    Relationship.hasMany(models.User),
+      {
+        foreignKey: "id",
+        as: "user2",
+      };
+  };
   return Relationship;
 };
