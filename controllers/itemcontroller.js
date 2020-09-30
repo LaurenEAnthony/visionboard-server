@@ -33,7 +33,7 @@ router.post('/create', function (req, res) {
     .catch(err => res.status(500).json({error: err}))
 });
 
-//Update item 
+//Update item !!!!!!!
 router.put('/update/:entryId', function (req, res) {
     const updateItemEntry = {
         itemTitle: req.body.item.itemTitle,

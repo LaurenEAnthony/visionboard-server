@@ -22,9 +22,12 @@ const sequelize = new Sequelize("visionboard", "postgres", "password", {
 // user.hasMany(relationship)
 // relationship.belongsTo(user)
 
+// user.hasMany(board);
+// board.belongsTo(user);
+// board.hasMany(item);
+// item.belongsTo(board);
 
-
-
+///////
 // const models = {
 //   User: sequelize.import('/models/user.js'),
 //   Board: sequelize.import('/models/board.js'),
