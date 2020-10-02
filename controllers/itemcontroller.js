@@ -5,17 +5,6 @@ const Item = sequilize.import("../models/item.js");
 
 
 /* //TODO
-
-router.get(
-  "/practice",
-  // valisateSession,
-  function (req, res) {
-    res.send("Hey Item!!!!!");
-  }
-);
-
-/*
-
 Item:~/api/item  
 POST /create      => Creates a new item
 PUT /update/:Id   => Updates existing item

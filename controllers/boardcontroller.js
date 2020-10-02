@@ -6,17 +6,6 @@ const Board = require("../db").import("../models/board");
 
 
 /*  //TODO
-
-router.post(
-  "/practice",
-  // valisateSession,
-  function (req, res) {
-    res.send("Hey Board");
-  }
-);
-
-/*
-
 Board: ~/api/board
 POST /create       => Creates a new board
 PUT /update/:Id    => Updates existing board
@@ -80,7 +69,7 @@ router.get("/mine", (req, res) => {
 });
 
 
-//Get all items for a particular board   ????????
+//Get all items for a particular board   
 router.get("/:boardId", (req, res) => {
   let boardid = req.board.id;
   Item.findAll({
