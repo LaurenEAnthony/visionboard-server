@@ -14,10 +14,10 @@ GET/mine         => Get all items in the board
 
 //Create Item
 
-router.post("/create", function (req, res) {
+router.post("/:boardId/create-item", function (req, res) {
   const itemEntry = {
     owner: req.user.id,
-    boardId: req.board.id,
+    boardId: req.params.boardId,
     itemTitle: req.body.item.itemTitle,
     notes: req.body.item.notes,
     photo: req.body.item.photo,
