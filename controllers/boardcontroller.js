@@ -1,64 +1,42 @@
-let express = require('express');
+let express = require("express");
 let router = express.Router();
-// let sequilize = require('../db');
-// const Board = sequilize.import('../models/board.js');
 const Board = require("../db").import("../models/board");
+const Item = require("../db").import("../models/item");
 
+//Create Board OK :)
 
-/*  //TODO
-
-router.post(
-  "/practice",
-  // valisateSession,
-  function (req, res) {
-    res.send("Hey Board");
-  }
-);
-
-/*
-
-Board: ~/api/board
-POST /create       => Creates a new board
-PUT /update/:Id    => Updates existing board
-DELETE/delete/:id  => Delete existing board
-GET/mine           => Find all my boards
-GET/shared         => Get boards that other users have shared
-*/
-
-//Create Board
-
-router.post('/create', function (req, res) {
-    const boardEntry = {
-        owner: req.user.id,
-        boardTitle: req.body.board.boardTitle,
-        description: req.body.board.description,
-        dateCreated: req.body.board.dateCreated,
-        tags: req.body.board.tags,
-        sharedBoard: req.body.board.sharedBoard
-    }
-    Board.create(boardEntry)
-    .then(board => res.status(200).json(board))
-    .catch(err => res.status(500).json({error: err}))
+router.post("/create", function (req, res) {
+  const boardEntry = {
+    owner: req.user.id,
+    boardTitle: req.body.board.boardTitle,
+    description: req.body.board.description,
+    dateCreated: req.body.board.dateCreated,
+    tags: req.body.board.tags,
+    sharedBoard: req.body.board.sharedBoard,
+  };
+  Board.create(boardEntry)
+    .then((board) => res.status(200).json(board))
+    .catch((err) => res.status(500).json({ error: err }));
 });
 
-// Update board
-router.put('/update/:entryId', function (req, res) {
-    const updateBoardEntry = {
-        boardTitle: req.body.board.boardTitle,
-        description: req.body.board.description,
-        dateCreated: req.body.board.dateCreated,
-        tags: req.body.board.tags,
-        sharedBoard: req.body.board.sharedBoard
-    };
+// Update board  OK :)
+router.put("/update/:entryId", function (req, res) {
+  const updateBoardEntry = {
+    boardTitle: req.body.board.boardTitle,
+    description: req.body.board.description,
+    dateCreated: req.body.board.dateCreated,
+    tags: req.body.board.tags,
+    sharedBoard: req.body.board.sharedBoard,
+  };
 
-    const query = { where: {id: req.params.entryId, owner: req.user.id}};
+  const query = { where: { id: req.params.entryId, owner: req.user.id } };
 
-    Board.update(updateBoardEntry, query)
+  Board.update(updateBoardEntry, query)
     .then((boards) => res.status(200).json(boards))
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-//Delete Board
+//Delete Board  OK :)
 router.delete("/delete/:id", function (req, res) {
   const query = { where: { id: req.params.id, owner: req.user.id } };
 
@@ -69,7 +47,7 @@ router.delete("/delete/:id", function (req, res) {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-//Get all boards for individual user
+//Get all boards for individual user  OK :)
 router.get("/mine", (req, res) => {
   let userid = req.user.id;
   Board.findAll({
@@ -79,16 +57,14 @@ router.get("/mine", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-
-//Get all items for a particular board   ????????
-router.get("/:boardId", (req, res) => {
-  let boardid = req.board.id;
+//Get all items for a particular board   OK :)
+router.get("/:board", (req, res) => {
+  let board = req.params.board;
   Item.findAll({
-    where: { board: boardid },
+    where: { boardId: board },
   })
     .then((item) => res.status(200).json(item))
     .catch((err) => res.status(500).json({ error: err }));
-
 });
 
 //Get shared boards
