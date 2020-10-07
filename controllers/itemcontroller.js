@@ -1,10 +1,12 @@
 let express = require("express");
 let router = express.Router();
+
 const Item = require("../db").import("../models/item.js");
 
 //Create Item
 router.post("/create-new-on-board/:boardId", function (req, res) {
   const itemEntry = {
+
     boardId: req.params.boardId,
     itemTitle: req.body.item.itemTitle,
     notes: req.body.item.notes,

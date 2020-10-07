@@ -1,7 +1,9 @@
 let express = require("express");
 let router = express.Router();
 const Board = require("../db").import("../models/board");
+
 const Item = require("../db").import("../models/item");
+
 
 //Create Board
 router.post("/create", function (req, res) {
@@ -54,7 +56,10 @@ router.get("/mine", (req, res) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-//Get all items for a particular board
+
+
+//Get all items for a particular board   
+
 router.get("/:boardId", (req, res) => {
   let board = req.params.boardId;
   Item.findAll({
