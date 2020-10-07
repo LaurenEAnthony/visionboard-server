@@ -2,8 +2,8 @@ let express = require("express");
 let router = express.Router();
 const Item = require("../db").import("../models/item.js");
 
-//Create Item OK :)
-router.post("/create-new-on/:boardId", function (req, res) {
+//Create Item
+router.post("/create-new-on-board/:boardId", function (req, res) {
   const itemEntry = {
     boardId: req.params.boardId,
     itemTitle: req.body.item.itemTitle,
@@ -15,7 +15,7 @@ router.post("/create-new-on/:boardId", function (req, res) {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-//Update item  OK :)
+//Update item
 router.put("/update/:itemId", function (req, res) {
   const updateItemEntry = {
     itemTitle: req.body.item.itemTitle,
@@ -30,7 +30,7 @@ router.put("/update/:itemId", function (req, res) {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-//Delete Item  OK :)
+//Delete Item
 router.delete("/delete/:itemId", function (req, res) {
   const query = { where: { id: req.params.itemId } };
 

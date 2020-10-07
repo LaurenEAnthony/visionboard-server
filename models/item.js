@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   Item.associate = function (models) {
     Item.belongsTo(models.Board, {
       foreignKey: "boardId",
+      onDelete: "CASCADE",
     });
   };
   return Item;

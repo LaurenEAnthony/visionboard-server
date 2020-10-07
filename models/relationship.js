@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
   Relationship.associate = function (models) {
     Relationship.belongsTo(models.User),
       {
-        foreignKey: "id",
+        foreignKey: "user1",
         as: "user1",
       };
     Relationship.hasMany(models.User),
       {
-        foreignKey: "id",
+        foreignKey: "user2",
         as: "user2",
       };
   };
