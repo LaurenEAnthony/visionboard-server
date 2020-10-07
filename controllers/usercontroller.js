@@ -4,7 +4,10 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validateSession = require("../middleware/validate-session");
 
-// ***LOGIN***
+// ***I think we can add DELETE user as well.
+// ***We also need update user settings endpoint for color scheme
+
+// ***LOGIN***  OK :)
 router.post("/login", function (req, res) {
   User.findOne({
     where: {
@@ -41,7 +44,7 @@ router.post("/login", function (req, res) {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-// ***REGULAR USER SIGNUP***
+// ***REGULAR USER SIGNUP***  OK :)
 router.post("/signup", function (req, res) {
   User.create({
     firstName: req.body.user.firstName,
@@ -69,7 +72,7 @@ router.post("/signup", function (req, res) {
     .catch((err) => res.status(500).json({ error: err }));
 });
 
-// ***ADMIN USER SIGNUP***
+// ***ADMIN USER SIGNUP***  OK :)
 router.post("/admin/signup", validateSession, function (req, res) {
   const admin = req.user.isAdmin;
   if (admin == true) {
@@ -102,7 +105,7 @@ router.post("/admin/signup", validateSession, function (req, res) {
   }
 });
 
-// ***ADMIN VIEW USER DATA***
+// ***ADMIN VIEW USER DATA***  OK :)
 router.get("/admin/view-all", validateSession, function (req, res) {
   const admin = req.user.isAdmin;
   if (admin == true) {
@@ -114,7 +117,7 @@ router.get("/admin/view-all", validateSession, function (req, res) {
   }
 });
 
-// ***ADMIN EDIT USER DATA***
+// ***ADMIN EDIT USER DATA***  OK :)
 router.put("/admin/:userId", validateSession, function (req, res) {
   const admin = req.user.isAdmin;
   if (admin == true) {
@@ -135,6 +138,5 @@ router.put("/admin/:userId", validateSession, function (req, res) {
     res.status(502).json({ error: "Not Authorized" });
   }
 });
-
 
 module.exports = router;
