@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const validateSession = require("../middleware/validate-session");
 
-// ***I think we can add DELETE user as well.
-// ***We also need update user settings endpoint for color scheme
-
 // ***LOGIN***  OK :)
 router.post("/login", function (req, res) {
   User.findOne({
@@ -70,6 +67,19 @@ router.post("/signup", function (req, res) {
       });
     })
     .catch((err) => res.status(500).json({ error: err }));
+});
+
+// ***USER EDIT COLORSCHEME***
+router.put("/colorScheme", validateSession, function (req, res) {
+    const updateColorScheme = {
+      colorScheme: req.body.user.colorScheme,
+    };
+
+    const query = { where: { id: req.user.id } }
+
+    User.update(updateColorScheme, query)
+      .then((user) => res.status(200).json(user))
+      .catch((err) => res.status(500).json({ error: err }));
 });
 
 // ***ADMIN USER SIGNUP***  OK :)
@@ -138,5 +148,19 @@ router.put("/admin/:userId", validateSession, function (req, res) {
     res.status(502).json({ error: "Not Authorized" });
   }
 });
+
+// ***ADMIN DELETE USER DATA***
+router.delete("/admin/delete/:userId", validateSession, function (req, res){
+  const admin = req.user.isAdmin;
+  if (admin == true){
+    const query = {where: {id: req.params.userId}};
+
+    User.destroy(query)
+    .then(()=> res.status(200).json({message: "User Removed"}))
+    .catch((err)=> res.status(500).json({error: err}))
+  } else {
+    res.status(502).json({error: "Not authorized"})
+  }
+})
 
 module.exports = router;
