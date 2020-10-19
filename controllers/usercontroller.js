@@ -139,12 +139,18 @@ router.put("/admin/edit/:userId", validateSession, function (req, res) {
   }
 });
 
-router.delete("admin/delete/:userId", validateSession, function (req, res) {
-  const query = { where: { id: req.params.id } };
+router.delete("/admin/delete/:userId", validateSession, function (req, res) {
+  const admin = req.user.isAdmin;
+  if(admin == true) {
 
-  User.destroy(query)
-  .then(() => res.status(200).json({ message: "User Removed "}))
-  .catch((err) => res.status(500).json({ error: err }));
+    const query = { where: { id: req.params.userId } };
+  
+    User.destroy(query)
+    .then(() => res.status(200).json({ message: "User Removed "}))
+    .catch((err) => res.status(500).json({ error: err }));
+  } else {
+    res.status(502).json({ error: "Not Authorized" });
+  }
 });
 
 module.exports = router;
