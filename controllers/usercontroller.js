@@ -128,7 +128,7 @@ router.get("/admin/view-all", validateSession, function (req, res) {
 });
 
 // ***ADMIN EDIT USER DATA***  OK :)
-router.put("/admin/:userId", validateSession, function (req, res) {
+router.put("/admin/edit/:userId", validateSession, function (req, res) {
   const admin = req.user.isAdmin;
   if (admin == true) {
     const updateUser = {
@@ -148,6 +148,7 @@ router.put("/admin/:userId", validateSession, function (req, res) {
     res.status(502).json({ error: "Not Authorized" });
   }
 });
+
 
 // ***ADMIN DELETE USER DATA***
 router.delete("/admin/delete/:userId", validateSession, function (req, res){
