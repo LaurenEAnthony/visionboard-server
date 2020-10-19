@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     sharedBoard: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
     },
   });
   Board.associate = function (models) {
