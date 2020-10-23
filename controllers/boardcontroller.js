@@ -13,6 +13,7 @@ router.post("/create", function (req, res) {
     description: req.body.board.description,
     tags: req.body.board.tags,
     sharedBoard: req.body.board.sharedBoard,
+    image: req.body.board.image
   };
   Board.create(boardEntry)
     .then((board) => res.status(200).json(board))
