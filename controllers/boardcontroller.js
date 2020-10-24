@@ -27,6 +27,7 @@ router.put("/update/:boardId", function (req, res) {
     description: req.body.board.description,
     tags: req.body.board.tags,
     sharedBoard: req.body.board.sharedBoard,
+    image: req.body.board.image
   };
 
   const query = { where: { id: req.params.boardId, owner: req.user.id } };
