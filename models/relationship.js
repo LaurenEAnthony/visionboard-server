@@ -1,13 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
   const Relationship = sequelize.define("relationship", {
-    user_1: {
+    user1: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    user_2: {
+    user2: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
+  Relationship.associate = function (models) {
+    Relationship.belongsTo(models.User),
+      {
+        foreignKey: "user1",
+        as: "user1",
+      };
+    Relationship.hasMany(models.User),
+      {
+        foreignKey: "user2",
+        as: "user2",
+      };
+  };
   return Relationship;
 };
